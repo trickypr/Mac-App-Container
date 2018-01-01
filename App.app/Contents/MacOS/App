@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+
+from appjar import gui
+import atexit, inspect, os
+
+def program():
+    app = gui("app container")
+
+    app.addLabel('title', 'app container for mac')
+
+    app.go()
+
+def close():
+    exePath = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))) # path to the python executable not an exe
+
+    exePath = exePath + "/appjar.pyc"
+    print(exePath)
+    os.remove(exePath)
+
+program()
+atexit.register(close)
